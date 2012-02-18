@@ -44,11 +44,12 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! /home/iceout/vim/vimrc<cr>
+map <leader>e :e! ~/vim/vimrc<cr>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source /home/iceout/vim/vimrc
-
+autocmd! bufwritepost vimrc source ~/vim/vimrc
+"au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%81v./
+au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,6 +60,7 @@ autocmd! bufwritepost vimrc source /home/iceout/vim/vimrc
 set wildmenu "Turn on WiLd menu
 
 set ruler "Always show current position
+
 set nu
 
 set cmdheight=2 "The commandbar height
@@ -103,7 +105,7 @@ elseif MySys() == "windows"
   "set guifontwide=Microsoft_YaHei_Mono:h12:cGB2312
   "set gfn=Bitstream\ Vera\ Sans\ Mono:h10
 elseif MySys() == "linux"
-  set gfn=Monospace\ 12
+  set gfn=Monospace\ 10
   set shell=/bin/bash
 endif
 
@@ -222,10 +224,11 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
-map <C-j> <C-W>j
+" <C-J> conflict with imaps(used by latex), so change imaps to <C-N>
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+map <C-j> <C-W>j
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
@@ -398,6 +401,41 @@ nmap wm :WMToggle<cr>
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim cycle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{1
+    let g:cycle_default_groups = [
+          \   [['true', 'false']],
+          \   [['yes', 'no']],
+          \   [['on', 'off']],
+          \   [['+', '-']],
+          \   [['>', '<']],
+          \   [['"', "'"]],
+          \   [['==', '!=']],
+          \   [['0', '1']],
+          \   [['and', 'or']],
+          \   [["in", "out"]],
+          \   [["up", "down"]],
+          \   [["min", "max"]],
+          \   [["get", "set"]],
+          \   [["add", "remove"]],
+          \   [["to", "from"]],
+          \   [["read", "write"]],
+          \   [["only", "except"]],
+          \   [['without', 'with']],
+          \   [["exclude", "include"]],
+          \   [["asc", "desc"]],
+          \   [['是', '否']],
+          \   [['{:}', '[:]', '(:)'], 'sub_pairs'],
+          \   [['（:）', '「:」', '『:』'], 'sub_pairs'],
+          \   [['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+          \     'Friday', 'Saturday'], 'hard_case', {'name': 'Days'}],
+          \ ]
+"}}}
+
+au VimEnter * RainbowParenthesesToggle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope setting 
