@@ -47,7 +47,7 @@ nmap <leader>w :w!<cr>
 map <leader>e :e! ~/vim/vimrc<cr>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/vim/vimrc
+autocmd! bufwritepost vimrc source /home/iceout/vim/vimrc
 "au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%81v./
 au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -105,7 +105,7 @@ elseif MySys() == "windows"
   "set guifontwide=Microsoft_YaHei_Mono:h12:cGB2312
   "set gfn=Bitstream\ Vera\ Sans\ Mono:h10
 elseif MySys() == "linux"
-  set gfn=Monospace\ 10
+  set gfn=Monospace\ 12
   set shell=/bin/bash
 endif
 
@@ -448,7 +448,7 @@ if has("cscope") && executable("cscope")
   set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 " add any database in current directory
-  function Lilydjwg_csadd()
+  function! Lilydjwg_csadd()
     set nocsverb
     if filereadable("cscope.out")
       cs add cscope.out
