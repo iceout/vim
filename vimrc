@@ -287,7 +287,7 @@ set laststatus=2    " 显示状态栏 (默认值为 1, 无法显示状态栏)
 
 
 " Format the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %{CurDir()}\ %r%{&fileformat}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ %r%{&fileformat}%h\ \ \ Line:\ %l/%L:%c
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
 
 
@@ -448,7 +448,7 @@ if has("cscope") && executable("cscope")
   set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 " add any database in current directory
-  function! Lilydjwg_csadd()
+  function! CSadd()
     set nocsverb
     if filereadable("cscope.out")
       cs add cscope.out
@@ -456,7 +456,7 @@ if has("cscope") && executable("cscope")
     set csverb
   endfunction
 
-  autocmd BufRead *.c,*.cpp,*.h call Lilydjwg_csadd()
+  autocmd BufRead *.c,*.cpp,*.h call CSadd()
 
 " 映射 {{{2
 " 查找C语言符号，即查找函数名、宏、枚举值等出现的地方
@@ -466,7 +466,7 @@ if has("cscope") && executable("cscope")
 " 查找本函数调用的函数
   nmap csd :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 查找调用本函数的函数
-  nmap csc :cs find c <C-R>=expand("<cword>")<CR><CR>
+  nmap csc :cs find c <C-R>=expand("<cword>")<CR><CR>:cw<CR>
 " 查找指定的字符串
   nmap cst :cs find t <C-R>=expand("<cword>")<CR><CR>
 " 查找egrep模式，相当于egrep功能，但查找速度快多了
