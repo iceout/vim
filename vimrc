@@ -224,7 +224,7 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
-" <C-J> conflict with imaps(used by latex), so change imaps to <C-N>
+" <C-J> conflict with imaps(used by latex), so change imaps to <C-M>
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
