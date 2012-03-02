@@ -23,7 +23,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=700
-
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -74,7 +73,6 @@ set ignorecase "Ignore case when searching
 set smartcase
 
 set hlsearch "Highlight search things
-
 set incsearch "Make search act like search in modern browsers
 set nolazyredraw "Don't redraw while executing macros 
 
