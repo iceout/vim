@@ -21,9 +21,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set spell
+set spellfile=~/vim/spell.utf8.add
 " Sets how many lines of history VIM has to remember
 set history=700
-
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -47,7 +48,7 @@ nmap <leader>w :w!<cr>
 map <leader>e :e! ~/vim/vimrc<cr>
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source /home/iceout/vim/vimrc
+autocmd! bufwritepost vimrc source ~/vim/vimrc
 "au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%81v./
 au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -74,7 +75,6 @@ set ignorecase "Ignore case when searching
 set smartcase
 
 set hlsearch "Highlight search things
-
 set incsearch "Make search act like search in modern browsers
 set nolazyredraw "Don't redraw while executing macros 
 
@@ -224,7 +224,7 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
-" <C-J> conflict with imaps(used by latex), so change imaps to <C-M>
+" <C-J> conflict with imaps(used by latex), so change imaps to <C-S>
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
