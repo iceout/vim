@@ -448,7 +448,7 @@ if has("cscope") && executable("cscope")
   set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 " add any database in current directory
-  function! Lilydjwg_csadd()
+  function! CSadd()
     set nocsverb
     if filereadable("cscope.out")
       cs add cscope.out
@@ -456,7 +456,7 @@ if has("cscope") && executable("cscope")
     set csverb
   endfunction
 
-  autocmd BufRead *.c,*.cpp,*.h call Lilydjwg_csadd()
+  autocmd BufRead *.c,*.cpp,*.h call CSadd()
 
 " 映射 {{{2
 " 查找C语言符号，即查找函数名、宏、枚举值等出现的地方
