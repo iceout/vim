@@ -51,6 +51,8 @@ map <leader>e :e! ~/vim/vimrc<cr>
 autocmd! bufwritepost vimrc source ~/vim/vimrc
 "au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%81v./
 au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
+"This is for setting Makefiles with tabs not spaces
+autocmd FileType make setlocal noexpandtab
 
 set clipboard=unnamedplus
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
