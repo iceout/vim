@@ -1,4 +1,4 @@
-"behave mswin
+"behave mswin"{{{
 " Sections:
 "    -> General
 "    -> VIM user interface
@@ -18,12 +18,17 @@
 "    -> Omni complete functions
 "    -> Folding
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set spell
 "set spellfile=~/vim/spell.utf8.add
 " Sets how many lines of history VIM has to remember
+
+set sessionoptions-=curdir
+set sessionoptions+=sesdir,slash,unix
+set viminfo='100,<50,s10,h
+
 set history=700
 " Enable filetype plugin
 filetype plugin on
@@ -52,7 +57,11 @@ autocmd! bufwritepost vimrc source ~/vim/vimrc
 "au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%81v./
 au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
 
-set clipboard=unnamedplus
+if MySys() == "Windows"
+    set clipboard=unnamed
+elseif MySys() == "linux"
+    set clipboard=unnamedplus
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -226,7 +235,7 @@ set wrap "Wrap lines
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
-" <C-J> conflict with imaps(used by latex), so change imaps to <C-S>
+" <C-J> conflict with imaps(used by latex), so change imaps to <C-J>
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
