@@ -525,10 +525,10 @@ let g:tex_flavor='latex'
 " => Git Vim configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "git {{{1
-map <leader>gs :GitStatus<cr>
-map <leader>gc :GitCommit<cr>
-map <buffer> <leader>ga :GitAdd
-map <buffer> <leader>gA :GitAdd <cfile>
-map <leader>gp :GitPush<cr>
-map <leader>gl :GitPull<cr>
+"map <buffer> <leader>gs :GitStatus<cr>
+"map <buffer> <leader>gc :GitCommit<cr>
+"map <buffer> <leader>ga :GitAdd
+"map <buffer> <leader>gA :GitAdd <cfile>
+"map <buffer> <leader>gp :GitPush
+"map <buffer> <leader>gl :GitPull
 "}}}1
