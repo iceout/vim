@@ -499,6 +499,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " latex
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" latex {{{1
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 "filetype plugin on
 
@@ -518,3 +519,16 @@ set grepprg=grep\ -nH\ $*
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+"}}}1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Git Vim configuration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"git {{{1
+map <leader>gs :GitStatus<cr>
+map <leader>gc :GitCommit<cr>
+map <buffer> <leader>ga :GitAdd
+map <buffer> <leader>gA :GitAdd <cfile>
+map <leader>gp :GitPush<cr>
+map <leader>gl :GitPull<cr>
+"}}}1
