@@ -25,6 +25,8 @@
 "set spellfile=~/vim/spell.utf8.add
 " Sets how many lines of history VIM has to remember
 
+set nocompatible
+
 set sessionoptions-=curdir
 set sessionoptions+=sesdir,slash,unix
 set viminfo='100,<50,s10,h
@@ -54,8 +56,8 @@ map <leader>e :e! ~/vim/vimrc<cr>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim/vimrc
-"au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%81v./
-au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
+"au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%80v./
+au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%80v/
 "This is for setting Makefiles with tabs not spaces
 autocmd FileType make setlocal noexpandtab
 
@@ -177,9 +179,8 @@ set expandtab  " 将 tab 键转换为空格
 set shiftwidth=4
 set tabstop=4
 set smarttab
-
 set lbr " linebreak
-set tw=500
+set tw=78 fo+=Mm
 
 set ai "Auto indent
 set si "Smart indet
@@ -518,3 +519,7 @@ set grepprg=grep\ -nH\ $*
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
+
+""""""""""""""""""""
+"set fo+=mM
+""""""""""""""""""""
