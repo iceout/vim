@@ -710,6 +710,12 @@ g:mwAutoSaveMarks	mark.txt	/*g:mwAutoSaveMarks*
 g:mwHistAdd	mark.txt	/*g:mwHistAdd*
 g:snippets_dir	snipMate.txt	/*g:snippets_dir*
 g:snips_author	snipMate.txt	/*g:snips_author*
+git-vim	git-vim.txt	/*git-vim*
+git-vim-commands	git-vim.txt	/*git-vim-commands*
+git-vim-contents	git-vim.txt	/*git-vim-contents*
+git-vim-keymaps	git-vim.txt	/*git-vim-keymaps*
+git-vim-license	git-vim.txt	/*git-vim-license*
+git-vim.txt	git-vim.txt	/*git-vim.txt*
 greek-letter-mappings	latex-suite.txt	/*greek-letter-mappings*
 headings	latexhelp.txt	/*headings*
 hyph-	latexhelp.txt	/*hyph-*
