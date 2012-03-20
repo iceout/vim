@@ -180,7 +180,7 @@ set shiftwidth=4
 set tabstop=4
 set smarttab
 set lbr " linebreak
-set tw=78 fo+=Mm
+set tw=81 fo+=Mm
 
 set ai "Auto indent
 set si "Smart indet
@@ -239,10 +239,10 @@ map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
 " <C-J> conflict with imaps(used by latex), so change imaps to <C-J>
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-h> <C-W>h
+"map <C-l> <C-W>l
+"map <C-j> <C-W>j
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
