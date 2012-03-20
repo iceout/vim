@@ -61,7 +61,7 @@ au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%80v/
 "This is for setting Makefiles with tabs not spaces
 autocmd FileType make setlocal noexpandtab
 
-if MySys() == "Windows"
+if MySys() == "windows"
     set clipboard=unnamed
 elseif MySys() == "linux"
     set clipboard=unnamedplus
