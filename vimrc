@@ -27,6 +27,8 @@ set nocompatible
 "set spellfile=~/vim/spell.utf8.add
 " Sets how many lines of history VIM has to remember
 
+set nocompatible
+
 set sessionoptions-=curdir
 set sessionoptions+=sesdir,slash,unix
 set viminfo='100,<50,s10,h
@@ -56,12 +58,12 @@ map <leader>e :e! ~/vim/vimrc<cr>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim/vimrc
-"au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%81v./
-au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
+"au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%80v./
+au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%80v/
 "This is for setting Makefiles with tabs not spaces
 autocmd FileType make setlocal noexpandtab
 
-if MySys() == "Windows"
+if MySys() == "windows"
     set clipboard=unnamed
 elseif MySys() == "linux"
     set clipboard=unnamedplus
@@ -179,9 +181,8 @@ set expandtab  " 将 tab 键转换为空格
 set shiftwidth=4
 set tabstop=4
 set smarttab
-
 set lbr " linebreak
-set tw=500
+set tw=81 fo+=Mm
 
 set ai "Auto indent
 set si "Smart indet
@@ -240,10 +241,10 @@ map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
 " <C-J> conflict with imaps(used by latex), so change imaps to <C-J>
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-h> <C-W>h
+"map <C-l> <C-W>l
+"map <C-j> <C-W>j
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>

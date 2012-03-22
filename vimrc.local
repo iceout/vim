@@ -4,4 +4,3 @@ endfun
 
 set runtimepath=/home/iceout/vim,/home/iceout/vim/after,$VIMRUNTIME
 source /home/iceout/vim/vimrc
-set nocompatible
