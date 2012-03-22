@@ -21,6 +21,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+
 "set spell
 "set spellfile=~/vim/spell.utf8.add
 " Sets how many lines of history VIM has to remember
