@@ -23,7 +23,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set spell
 "set spellfile=~/vim/spell.utf8.add
-" Sets how many lines of history VIM has to remember
 
 set nocompatible
 
@@ -31,6 +30,7 @@ set sessionoptions-=curdir
 set sessionoptions+=sesdir,slash,unix
 set viminfo='100,<50,s10,h
 
+" Sets how many lines of history VIM has to remember
 set history=700
 " Enable filetype plugin
 filetype plugin on
@@ -92,6 +92,7 @@ set smartcase
 set hlsearch "Highlight search things
 set incsearch "Make search act like search in modern browsers
 set nolazyredraw "Don't redraw while executing macros 
+set cursorline
 
 set magic "Set magic on, for regular expressions
 
@@ -361,6 +362,13 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType java set omnifunc=javacomplete#Complet
+
+ let OmniCpp_NamespaceSearch = 1 
+ let OmniCpp_GlobalScopeSearch = 1 
+ let OmniCpp_ShowAccess = 1 
+ let OmniCpp_MayCompleteDot = 1 
+ let OmniCpp_MayCompleteArrow = 1 
+ let OmniCpp_MayCompleteScope = 1 
 "}}}
 
 
@@ -533,3 +541,5 @@ let g:tex_flavor='latex'
 "map <buffer> <leader>gp :GitPush
 "map <buffer> <leader>gl :GitPull
 "}}}1
+
+
