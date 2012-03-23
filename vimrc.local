@@ -2,5 +2,5 @@ fun! MySys()
   return "linux"
 endfun
 
-set runtimepath=/home/iceout/vim,/home/iceout/vim/after,$VIMRUNTIME
+set runtimepath=/home/iceout/vim,$VIMRUNTIME,/home/iceout/vim/after
 source /home/iceout/vim/vimrc

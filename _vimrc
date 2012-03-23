@@ -2,7 +2,7 @@ fun! MySys()
   return "windows"
 endfun
 
-set runtimepath=~\vim,~\vim\after,$VIMRUNTIME
+set runtimepath=~\vim,$VIMRUNTIME,~\vim\after
 source ~\vim\vimrc
 
 "source $VIMRUNTIME/vimrc_example.vim
