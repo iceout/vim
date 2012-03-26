@@ -181,7 +181,7 @@ set shiftwidth=4
 set tabstop=4
 set smarttab
 set lbr " linebreak
-set tw=81 fo+=Mm
+set tw=500 fo+=Mm
 
 set ai "Auto indent
 set si "Smart indet
