@@ -20,7 +20,7 @@ tasklist
 --------
 `<Leader>t` " 查看tasklist
 
-NERD_commenter 
+NERD\_commenter 
 --------------
 `<Leader>c<space>` " 根据第一行的状态来切换所选行的注释状态
 `<Leader>cm` " 块注释
