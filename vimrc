@@ -547,6 +547,7 @@ let g:tex_flavor='latex'
 "}}}1
 
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+nmap <silent> <leader>ec :echo Google_Translate('en','zh-CN',expand('<cword>'))<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DoxygenToolkit 
@@ -555,3 +556,4 @@ let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="iceout"
+
