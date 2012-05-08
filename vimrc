@@ -71,7 +71,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  VIM user interface {{{1
 " Set 7 lines to the curors - when moving vertical..
-"set so=7
+set so=7
 
 set wildmenu "Turn on WiLd menu
 
@@ -92,7 +92,9 @@ set smartcase
 set hlsearch "Highlight search things
 set incsearch "Make search act like search in modern browsers
 set nolazyredraw "Don't redraw while executing macros 
-set cursorline
+set cursorline " Highlight current line
+set cursorcolumn " Highlight current column
+
 
 set magic "Set magic on, for regular expressions
 
