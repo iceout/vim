@@ -17,6 +17,13 @@
 "    -> Minibuffer plugin
 "    -> Omni complete functions
 "    -> Folding
+"    -> snipMate 
+"    -> WinManager
+"    -> vim cycle
+"    -> cscope setting 
+"    -> latex
+"    -> DoxygenToolkit 
+"    -> some map 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 " => General
@@ -133,11 +140,11 @@ if has("gui_running")
   set background=dark
   "colorscheme peaksea
   "colorscheme freya
-  colorscheme desert
+  colorscheme mydesert
+  "colorscheme desert
 else
   colorscheme zellner
   set background=dark
-
   set nonu
 endif
 
@@ -417,8 +424,9 @@ let g:snips_email='ice.404.out@gmail.com'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => WinManager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap wm :WMToggle<cr>
+"let g:winManagerWindowLayout='FileExplorer|TagList'
+let g:winManagerWindowLayout='NERDTree|TagList,BufExplorer'
+nmap wm :WMToggle<cr>:q<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Uncomment the following to have Vim jump to the 
@@ -471,7 +479,7 @@ if has("cscope") && executable("cscope")
 " 设置 {{{2
   set csto=1
   set cst
-  set cscopequickfix=s-,c-,d-,i-,t-,e-
+  set cscopequickfix=s-,c-,d-,i-,t-,e-,f-
 
 " add any database in current directory
   function! CSadd()
@@ -546,8 +554,6 @@ let g:tex_flavor='latex'
 "map <buffer> <leader>gl :GitPull
 "}}}1
 
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-nmap <silent> <leader>ec :echo Google_Translate('en','zh-CN',expand('<cword>'))<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DoxygenToolkit 
@@ -556,4 +562,12 @@ let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 let g:DoxygenToolkit_paramTag_pre="@Param "
 let g:DoxygenToolkit_returnTag="@Returns   "
 let g:DoxygenToolkit_authorName="iceout"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => some map 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <F4> :cw<cr>
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+nmap <silent> <leader>ec :echo Google_Translate('en','zh-CN',expand('<cword>'))<CR>
 

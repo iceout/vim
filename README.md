@@ -25,3 +25,7 @@ NERD\_commenter
 `<Leader>c<space>` " 根据第一行的状态来切换所选行的注释状态
 `<Leader>cm` " 块注释
 `<Leader>cc` " 行注释
+
+EasyMotion
+--
+`<Leader><Leader>w` 显示序号,然后按序号跳转

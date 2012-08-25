@@ -106,8 +106,10 @@ hi Error	cterm=bold ctermfg=7 ctermbg=1
 
 "Omni menu colors
 hi Pmenu        guifg=Black             guibg=PaleTurquoise3    gui=NONE
+"hi Pmenu        guibg=brown             gui=bold
 hi PmenuSbar    guifg=White             guibg=PowderBlue        gui=NONE
-hi PmenuSel     guifg=White             guibg=Black             gui=NONE
+"hi PmenuSel     guifg=White             guibg=Black             gui=NONE
+hi PmenuSel     guifg=Black             guibg=White             gui=NONE
 hi PmenuThumb   guifg=SkyBlue3          guibg=White             gui=reverse
 " Matched brackets
 hi MatchParen   guifg=White             guibg=MediumPurple1     gui=NONE
