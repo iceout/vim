@@ -39,6 +39,10 @@ set viminfo='100,<50,s10,h
 
 " Sets how many lines of history VIM has to remember
 set history=700
+
+" pythogen.vim
+call pathogen#infect()
+
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -155,7 +159,7 @@ endif
 "endtry
 
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,sjis,euc-kr,ucs-2le,latin1
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,ucs-2le,latin1
 "set termencoding=cp936
 set fileencoding=utf-8
 "set ffs=unix,dos,mac "Default file types
@@ -571,3 +575,9 @@ nmap <F4> :cw<cr>
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <silent> <leader>ec :echo Google_Translate('en','zh-CN',expand('<cword>'))<CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => python 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufWritePost *.py call Flake8()
+let g:pyflakes_use_quickfix = 0
+autocmd FileType python map <buffer> <leader>8 :call Flake8()<CR>

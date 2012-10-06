@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/etc/apache2/conf.d'
 let g:netrw_dirhist_2='/home/iceout/programming/django/dropnote/sync'
 let g:netrw_dirhist_3='/home/iceout/programming/django/virtualenv/symposion/symposion_project'
 let g:netrw_dirhist_4='/home/iceout/programming/django/virtualenv/booking/locale/zh_CN/LC_MESSAGES'
+let g:netrw_dirhist_5='/home/iceout/octopress/source/_posts'
+let g:netrw_dirhist_6='/etc/apache2/sites-enabled'

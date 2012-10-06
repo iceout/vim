@@ -29,3 +29,14 @@ NERD\_commenter
 EasyMotion
 --
 `<Leader><Leader>w` 显示序号,然后按序号跳转
+
+Google Translate
+--
+`<Leader>e2c` 英译汉
+`<Leader>e2c` 汉译英
+
+既可以在normal模式下使用，也可以在visual下使用。
+
+vim-flake8
+-
+<F7>检测python错误，包括是否符合PEP8.
