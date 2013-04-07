@@ -103,8 +103,8 @@ set smartcase
 set hlsearch "Highlight search things
 set incsearch "Make search act like search in modern browsers
 set nolazyredraw "Don't redraw while executing macros 
-set cursorline " Highlight current line
-set cursorcolumn " Highlight current column
+"set cursorline " Highlight current line
+"set cursorcolumn " Highlight current column
 
 
 set magic "Set magic on, for regular expressions
@@ -159,7 +159,8 @@ endif
 "endtry
 
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,ucs-2le,latin1
+set fileencodings=ucs-bom,utf-8,gb18030,big5,euc-jp,euc-kr,ucs-2le,latin1
+"set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,ucs-2le,latin1
 "set termencoding=cp936
 set fileencoding=utf-8
 "set ffs=unix,dos,mac "Default file types
@@ -581,3 +582,4 @@ nmap <silent> <leader>ec :echo Google_Translate('en','zh-CN',expand('<cword>'))<
 autocmd BufWritePost *.py call Flake8()
 let g:pyflakes_use_quickfix = 0
 autocmd FileType python map <buffer> <leader>8 :call Flake8()<CR>
+

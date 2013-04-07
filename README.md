@@ -40,3 +40,11 @@ Google Translate
 vim-flake8
 -
 <F7>检测python错误，包括是否符合PEP8.
+
+
+pathogen
+-
+
+    cd ~/.vim/bundle
+    git clone git://github.com/tpope/vim-fugitive.git
+    :Helptags
