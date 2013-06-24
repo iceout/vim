@@ -1,0 +1,12 @@
+[submodule "bundle/vim-flake8"]
+	path = bundle/vim-flake8
+	url = git://github.com/nvie/vim-flake8.git
+[submodule "bundle/minibufexpl.vim"]
+	path = bundle/minibufexpl.vim
+	url = git://github.com/fholgado/minibufexpl.vim.git
+[submodule "bundle/c.vim"]
+	path = bundle/c.vim
+	url = git://github.com/vim-scripts/c.vim.git
+[submodule "bundle/Vim-R-plugin"]
+	path = bundle/Vim-R-plugin
+	url = git://github.com/vim-scripts/Vim-R-plugin.git
