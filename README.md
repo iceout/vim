@@ -50,7 +50,7 @@ pathogen
     :Helptags
 
 安装插件
-#git submodule add 插件 Git 仓库地址 bundle/插件名字
+`#git submodule add 插件 Git 仓库地址 bundle/插件名字`
 `git submodule add git://github.com/tpope/vim-markdown.git bundle/vim-markdown`
 
 升级插件
