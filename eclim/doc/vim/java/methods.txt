@@ -37,13 +37,10 @@ code.
      private String name;
 
      /**
-      * Constructs a new instance.
-      *
-      * @param id The id for this instance.
-      * @param name The name for this instance.
+      * @param id
+      * @param name
       */
-     public Foo (int id, String name)
-     {
+     public Foo(int id, String name) {
        this.id = id;
        this.name = name;
      }
@@ -54,6 +51,22 @@ code.
 
 If you issue the command with no fields selected, then a default empty
 constructor is created.
+
+When attempting to create an empty constructor, if the super class
+doesn't define a default constructor, but instead has one or more
+constructors which takes arguments, then calling :JavaConstructor
+without a range will result in the creation of a constructor which
+overrides the super class constructor containing the least number of
+arguments. Although an empty constructor won't pass code validation,
+you can force the creation of one in this case by suffixing the
+command with a '!':
+
+>
+
+   :JavaConstructor!
+
+<
+
 
 *:JavaGetSet*
 
@@ -74,6 +87,15 @@ Getters / Setters
 - :JavaSet - Generates setters for the field under the cursor or for
   all fields in the specified range.
 
+Note: If you would like to generate the indexed getter or setter then you
+  can suffix the appropriate command above with '!' and if the
+  property is an array, an indexed accessor will be created.>
+
+     :JavaGetSet!
+
+  <
+
+
 Given the following file:
 
 >
@@ -91,18 +113,6 @@ You can place the cursor on one of the fields and execute :JavaGetSet
 to generate the getters and setters for the field.  All of the above
 commands support ranges as well, so you can use a visual selection or
 a numbered range to generate methods for a set of fields.
-
-
-Configuration
--------------
-
-Vim Settings (|vim-settings|)
-
-*g:EclimJavaBeanInsertIndexed*
-
-- g:EclimJavaBeanInsertIndexed (Default: 1) - When set to a value
-  greater than 0, eclim will insert indexed getters and setters for
-  array properties.
 
 *:JavaImpl*
 
@@ -128,38 +138,24 @@ java.io.InputStream:
    com.test.TestStream
 
    package java.io;
-   public class InputStream
-     public int read ()
-       throws IOException
-     public int read (byte[] b)
-       throws IOException
-     public int read (byte[] b, int off, int len)
-       throws IOException
-     public long skip (long n)
-       throws IOException
-     public int available ()
-       throws IOException
-     public void close ()
-       throws IOException
-     public void mark (int readlimit)
-     public void reset ()
-       throws IOException
+   class InputStream
+     public int read()
+     public int read(byte[])
+     public int read(byte[], int, int)
+     public long skip(long)
+     public int available()
+     public void close()
+     public void mark(int)
+     public void reset()
      public boolean markSupported ()
 
-   package java.io;
-   public interface Closeable
-     public void close ()
-       throws IOException
-
    package java.lang;
-   public class Object
-     public int hashCode ()
-     public boolean equals (Object obj)
-     protected Object clone ()
-       throws CloneNotSupportedException
-     public String toString ()
-     protected void finalize ()
-       throws Throwable
+   class Object
+     public int hashCode()
+     public boolean equals(Object)
+     protected Object clone()
+     public String toString()
+     protected void finalize()
 
 <
 
@@ -173,10 +169,10 @@ class, then simply hit <enter> with the cursor over the class name and
 stub methods will be created for each method in that class or
 interface.
 
-This functionality is currently supported for both outer and inner
-classes, but not for anonymous inner classes.  To view the list of
-methods to override for an inner class, simply execute :JavaImpl with
-the cursor somewhere in the inner class.
+This functionality supports outer, inner, and anonymous classes
+classes. To view the list of methods to override for an inner or
+anonymous class, simply execute :JavaImpl with the cursor somewhere in
+the body of the inner or anonymous class.
 
 *:JavaDelegate*
 
@@ -212,14 +208,14 @@ on a field of type java.util.List like the one above.
 
 >
 
-   com.test.TestList
+   com.test.TestList.myList
 
    package java.util;
-   public interface List
-     public abstract int size ()
-     public abstract boolean isEmpty ()
-     public abstract boolean contains (Object o)
-     public abstract Object[] toArray ()
+   interface List
+     public abstract int size()
+     public abstract boolean isEmpty()
+     public abstract boolean contains(Object)
+     public abstract Object[] toArray()
      ...
 
 <
@@ -248,8 +244,5 @@ If you would like to generate delegate methods for all methods in an
 interface or class, then simply hit <enter> with the cursor over the
 class name, and delegate methods will be created for each method in
 that interface or class.
-
-This functionality is currently supported for both outer and inner
-classes, but not for anonymous inner classes.
 
 vim:ft=eclimhelp

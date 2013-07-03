@@ -10,11 +10,7 @@ Features
 - Php Build Path (vim-php-buildpath)
 - Php Code Completion (vim-php-complete)
 - Php Validation (vim-php-validate)
-  - Configuration (vim-php-validate#configuration)
 - Php Search (vim-php-search)
-  - Pattern Search (vim-php-search#pattern-search)
-  - Element Search (vim-php-search#element-search)
-  - Configuration (vim-php-search#configuration)
 
 Suggested Mappings
 ==================

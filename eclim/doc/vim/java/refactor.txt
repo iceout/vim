@@ -121,22 +121,41 @@ Warning: When renaming a package, the associated directory will also be
   any other vim sessions that might be affected by the renaming of a
   package.
 
-*:JavaRefactorUndo* *:JavaRefactorRedo*
+*:JavaMove*
+
+
+Move
+====
+
+Eclim also supports moving a top level class or interface from one
+package to another using the :JavaMove command.
+
+In this example the current file would be moved from its current
+package to the package org.foo:
+
+>
+
+   :JavaMove org.foo
+
+<
+
+
+Like the package renaming described in the previous section, the
+argument to :JavaMove must be the full package name you want to move
+the current file to.
 
 
 Refactor Undo/Redo
 ==================
 
 In the event that you need to undo a refactoring, eclim provides the
-:JavaRefactorUndo command.  When executed, the last refactoring will
-be reverted.  If you are unsure what the last refactoring was, the
-:JavaRefactorUndoPeek command will provide a hint of the top most
-refactoring on the undo stack.  Unfortunately the hint doesn't provide
-details beyond the type of refactoring that will be undone, but it can
-still be helpful at times.
+:RefactorUndo command. When executed, the last refactoring will be
+reverted. If you are unsure what the last refactoring was, the
+:RefactorUndoPeek command will print the name of the top most
+refactoring on the undo stack.
 
-Eclim also provides the :JavaRefactorRedo and :JavaRefactorRedoPeek
-commands which provide the redo counterpart to the undo commands.
+Eclim also provides the :RefactorRedo and :RefactorRedoPeek commands
+which provide the redo counterpart to the undo commands.
 
 
 Configuration
@@ -144,7 +163,7 @@ Configuration
 
 Vim Settings (|vim-settings|)
 
-*g:EclimRefactorDiffOrientation*
+*g:EclimRefactorDiffOrientation_java*
 
 - g:EclimRefactorDiffOrientation (Default: 'vertical') - Specifies the
   orientation used when previewing a refactoring and performing a diff

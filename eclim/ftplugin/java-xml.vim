@@ -1,12 +1,8 @@
 " Author:  Eric Van Dewoestine
 "
-" Description: {{{
-"   Default xml.vim only defines the xmlRegion if xml folding is enabled, but
-"   xmlRegion is needed to allow spell check highlighting of xml text.
+" License: {{{
 "
-" License:
-"
-" Copyright (C) 2005 - 2013  Eric Van Dewoestine
+" Copyright (C) 2012  Eric Van Dewoestine
 "
 " This program is free software: you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
@@ -23,21 +19,22 @@
 "
 " }}}
 
-source $VIMRUNTIME/syntax/xml.vim
+" Functionality exposed to java xml files (web.xml, spring xml files, etc.).
 
-" the c# syntax file loads syntax/xml.vim, but the below changes may break
-" syntax highlighting in c#
-if &ft == 'cs'
-  finish
+" Global Variables {{{
+
+if !exists("g:EclimJavaSearchMapping")
+  let g:EclimJavaSearchMapping = 1
 endif
 
-if !exists('g:xml_syntax_folding')
-  " taken from syntax/xml.vim, but removed unecessary portions.
-  syn region   xmlRegion
-    \ start=+<\z([^ /!?<>"']\+\)+
-    \ skip=+<!--\_.\{-}-->+
-    \ end=+</\z1\_\s\{-}>+
-    \ contains=xmlTag,xmlEndTag,xmlCdata,xmlRegion,xmlComment,xmlEntity,xmlProcessing,@xmlRegionHook,@Spell
+" }}}
+
+" Mappings {{{
+
+if g:EclimJavaSearchMapping
+  noremap <silent> <buffer> <cr> :call eclim#java#search#FindClassDeclaration()<cr>
 endif
+
+" }}}
 
 " vim:ft=vim:fdm=marker

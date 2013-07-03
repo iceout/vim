@@ -1,7 +1,7 @@
 *vim-java-inspection*
 
-Java Code Inspetion
-*******************
+Java Code Inspection
+********************
 
 *:JavaHierarchy*
 

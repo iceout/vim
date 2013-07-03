@@ -5,7 +5,7 @@
 "
 " License:
 "
-" Copyright (C) 2005 - 2009  Eric Van Dewoestine
+" Copyright (C) 2005 - 2013  Eric Van Dewoestine
 "
 " This program is free software: you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
@@ -28,11 +28,20 @@ if !exists("g:EclimRubyValidate")
   let g:EclimRubyValidate = 1
 endif
 
+if !exists("g:EclimRubySyntasticEnabled")
+  let g:EclimRubySyntasticEnabled = 0
+endif
+
 " }}}
 
 " Options {{{
 
-setlocal completefunc=eclim#ruby#complete#CodeComplete
+exec 'setlocal ' . g:EclimCompletionMethod . '=eclim#ruby#complete#CodeComplete'
+
+" disable syntastic
+if exists('g:loaded_syntastic_plugin') && !g:EclimRubySyntasticEnabled
+  let g:syntastic_ruby_checkers = []
+endif
 
 " }}}
 
@@ -40,8 +49,7 @@ setlocal completefunc=eclim#ruby#complete#CodeComplete
 
 augroup eclim_ruby
   autocmd! BufWritePost <buffer>
-  autocmd BufWritePost <buffer>
-    \ call eclim#lang#UpdateSrcFile('ruby', g:EclimRubyValidate)
+  autocmd BufWritePost <buffer> call eclim#lang#UpdateSrcFile('ruby')
 augroup END
 
 " }}}

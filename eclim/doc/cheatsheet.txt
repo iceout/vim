@@ -205,17 +205,20 @@ Java Commands
 - |:JavaDelegate| - View list of methods that delegate to the field
   under the cursor.
 
-- |:JUnitImpl| - Similar to :JavaImpl, but creates test methods.
+- |:JUnit| [testcase] - Allows you to execute junit test cases.
 
-- |:JUnitExecute| [testcase] - Allows you to execute test cases in
-  your favorite build tool.
+- |:JUnitFindTest| - Attempts to find the corresponding test for the
+  current source file.
+
+- |:JUnitImpl| - Similar to :JavaImpl, but creates test methods.
 
 - |:JUnitResult| [testcase] - Allows you to view the results of a test
   case.
 
 - |:JavaImport| - Import the class under the cursor.
 
-- |:JavaImportMissing| - Import all undefined types.
+- |:JavaImportOrganize| - Import undefined types, remove unused
+  imports, sort and format imports.
 
 - |:JavaSearch| [-p <pattern>] [-t <type>] [-x <context>] [-s <scope>]
   - Search for classes, methods, fields, etc.  (With pattern supplied,
@@ -231,11 +234,15 @@ Java Commands
 - |:JavaDocComment| - Adds or updates the comments for the element
   under the cursor.
 
+- |:JavaDocPreview| - Display the javadoc of the element under the
+  cursor in vim's preview window.
+
 - |:JavaRename| [new_name] - Rename the element under the cursor.
 
-- |:Java| - Executes the java using your project's main class.
+- |:JavaMove| [new_package] - Move the current class/interface to
+  another package.
 
-- |:Javac| - Executes the javac utility against all source files.
+- |:Java| - Executes the java using your project's main class.
 
 - |:JavaClasspath| [-d <delim>] - Echos the project's classpath
   delimited by the system path separator or the supplied delimiter.
@@ -258,14 +265,17 @@ Java Commands
 Java .classpath Commands
 ========================
 
-- |:NewSrcEntry| <dir> [<dir> ...] - Add a new source dir entry.
+- :NewSrcEntry (|:NewSrcEntry_java|) <dir> [<dir> ...] - Add a new
+  source dir entry.
 
-- |:NewProjectEntry| <project> [<project> ...] - Add a new project
+- :NewProjectEntry (|:NewProjectEntry_java|) <project> [<project> ...]
+  - Add a new project entry.
+
+- :NewJarEntry (|:NewJarEntry_java|) <file> [<file> ...] - Add a jar
   entry.
 
-- |:NewJarEntry| <file> [<file> ...] - Add a jar entry.
-
-- |:NewVarEntry| <VAR/file> [<VAR/file> ...] - Add a new var entry.
+- :NewVarEntry (|:NewVarEntry_java|) <VAR/file> [<VAR/file> ...] - Add
+  a new var entry.
 
 - |:VariableList| List available classpath variables and their
   corresponding values.
@@ -441,11 +451,14 @@ Misc. Commands
 - |:HistoryClear| - Clear the local history entries for the current
   file.
 
-- |:HistoryDiffNext| - Diff the current file against the next entry in
-  the history stack.
+- |:HistoryDiffNext| / |:HistoryDiffPrev| - Diff the current file
+  against the next/previous entry in the history stack.
 
-- |:HistoryDiffPrev| - Diff the current file against the previous
-  entry in the history stack.
+- |:RefactorUndo| / |:RefactorRedo| - Undo / Redo the last
+  refactoring.
+
+- |:RefactorUndoPeek| / |:RefactorRedoPeek| - Display a short
+  description of the refactoring to be undone / redone.
 
 - |:OpenUrl| [url] - Opens a url in your configured web browser.
 

@@ -8,18 +8,9 @@ Features
 ========
 
 - Python Validation (vim-python-validate)
-  - Configuration (vim-python-validate#configuration)
 - Python Code Completion (vim-python-complete)
 - Python Search (vim-python-search)
-  - Element Search (vim-python-search#element-search)
-  - Configuration (vim-python-search#configuration)
 - Django (vim-python-django)
-  - Django manage.py (vim-python-django#django-manage-py)
-  - Configuration (vim-python-django#configuration)
-  - Django python support (vim-python-django#django-python-support)
-  - Django html template support
-    (vim-python-django#django-html-template-support)
-  - Configuration (vim-python-django#id1)
 *python-rope*
 
 

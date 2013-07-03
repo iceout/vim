@@ -1,11 +1,8 @@
 " Author:  Eric Van Dewoestine
 "
-" Description: {{{
-"   Compiler for javadoc.
+" License: {{{
 "
-" License:
-"
-" Copyright (C) 2005 - 2010  Eric Van Dewoestine
+" Copyright (C) 2005 - 2013  Eric Van Dewoestine
 "
 " This program is free software: you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
@@ -27,15 +24,14 @@ if exists("current_compiler")
 endif
 let current_compiler = "eclim_javadoc"
 
-let port = eclim#client#nailgun#GetNgPort()
-let command = eclim#client#nailgun#GetEclimCommand()
-if !(has('win32') || has('win64') || has('win32unix'))
-  let command = substitute(command, '"', '', 'g')
-endif
-let command .= ' --nailgun-port ' . port
+let instance = eclim#client#nailgun#ChooseEclimdInstance()
+let command = eclim#client#nailgun#GetEclimCommand(instance.home)
+let command .= ' --nailgun-port ' . instance.port
 let command .= ' -command javadoc $*'
 if has('win32') || has('win64') || has('win32unix')
-  let command .= ' "'
+  let command = 'cmd /c " ' . command . ' "'
+else
+  let command = substitute(command, '"', '', 'g')
 endif
 exec 'CompilerSet makeprg=' . escape(command, ' "')
 

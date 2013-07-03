@@ -75,6 +75,13 @@ of eclim.
 
   g:EclimBuffersDefaultAction (defaults to 'split')
 
+  Note that eclim will track the tab where buffers are opened and
+  closed allowing :Buffers to filter the list to those whose primary
+  tab is the current tab, or for buffers not open, show those that
+  were last open on the current tab. If however you would like to
+  still see all listed buffers, you can append '!' to the command:
+  :Buffers!
+
   By default entries will be sorted by path name, but you may change
   the sorting via these two variables:
 

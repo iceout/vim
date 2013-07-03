@@ -16,8 +16,8 @@ you are unsure how to start eclimd).
 Creating your first project
 ===========================
 
-Once you've got eclimd running open an instance of vim and create your
-project like so:
+Once you've got eclimd running, open an instance of vim and create
+your project like so:
 
 Note: Android Users: the android section below contains additional info
   regarding the creation of android projects.Maven Users: you may
@@ -228,7 +228,7 @@ Lets get started writing our first java application using eclim.
    also run :lopen to view all the errors in the file at once.
 
 4. Now lets try out code completion.  Place your cursor on the '.' of
-   'System.' and start insert mode in vim use 'a', then follow the
+   'System.' and start insert mode in vim using 'a', then follow the
    example below:
 
    >
@@ -243,10 +243,9 @@ Lets get started writing our first java application using eclim.
    <
 
 5. After saving the file you should have no more validation errors, so
-   now we can compile the code and run it like so:
+   now we can run the code like so:
 
    >
-      :Javac
       :Java
 
    <
@@ -345,7 +344,7 @@ maven's built in features to get your project started.
 
    >
       $ vim
-      :MvnRepos
+      :MvnRepo
       :ProjectImport /path/to/new/project
 
    <

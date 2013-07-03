@@ -26,7 +26,7 @@ Note: All of the commands described below are only available while editing
   also provides a means to auto update the eclipse classpath when
   saving changes to your ivy.xml.
 
-*:NewSrcEntry*
+*:NewSrcEntry_java*
 
 - :NewSrcEntry <dir> [<dir> ...] - Adds a new entry for one or more
   source code directories relative to the project's root directory.
@@ -39,7 +39,7 @@ Note: All of the commands described below are only available while editing
   This command supports command completion of directories relative to
   the .classpath file.
 
-*:NewProjectEntry*
+*:NewProjectEntry_java*
 
 - :NewProjectEntry <project> [<project> ...] - Adds a new entry for
   one or more dependencies on other projects.
@@ -51,7 +51,7 @@ Note: All of the commands described below are only available while editing
 
   This command supports command completion of project names.
 
-*:NewJarEntry*
+*:NewJarEntry_java*
 
 - :NewJarEntry <file> [<file> ...] - Adds a new entry for one or more
   jar file dependencies.  If the jar file is not in a folder under the
@@ -63,7 +63,7 @@ Note: All of the commands described below are only available while editing
 
   <
 
-*:NewVarEntry*
+*:NewVarEntry_java*
 
 - :NewVarEntry <VAR/file> [<VAR/file> ...] - Just like NewJarEntry
   except an Eclipse "var" entry is created.  When a jar entry
@@ -152,8 +152,7 @@ Note: For additional information on the Eclipse plugin from maven, you may
   To initialize maven's support for updating the eclipse classpath you
   first need to set the M2_REPO (or MAVEN_REPO for 1.x) classpath
   variable in the Eclipse workspace by executing the following command
-  which is made available when editing the pom.xml (or project.xml for
-  1.x) file in vim:
+  in vim:
 
   maven 2.x:
 

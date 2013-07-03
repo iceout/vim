@@ -1,10 +1,8 @@
 " Author:  Eric Van Dewoestine
 "
-" Description: {{{
+" License: {{{
 "
-" License:
-"
-" Copyright (C) 2005 - 2011  Eric Van Dewoestine
+" Copyright (C) 2005 - 2013  Eric Van Dewoestine
 "
 " This program is free software: you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
@@ -30,152 +28,29 @@
   endif
 " }}}
 
-" Execute(port, command) {{{
-" Function which invokes nailgun.
-function! eclim#client#nailgun#Execute(port, command)
-  if !exists('g:EclimNailgunClient')
-    call s:DetermineClient()
+function! eclim#client#nailgun#ChooseEclimdInstance(...) " {{{
+  " Function which prompts the user to pick the target workspace and returns
+  " their choice or if only one workspace is active simply return it without
+  " prompting the user.  If the optional 'dir' argument is supplied and that dir
+  " is a subdirectory of one of the workspaces, then that workspace will be
+  " returned.
+  " Option args:
+  "   dir
+
+  let instances = eclim#client#nailgun#GetEclimdInstances()
+  if type(instances) == g:NUMBER_TYPE
+    call eclim#util#Echo(printf(
+      \ 'No eclimd instances found running (eclimd created file not found %s)',
+      \ eclim#UserHome() . '/.eclim/.eclimd_instances'))
+    return
   endif
 
-  if g:EclimNailgunClient == 'python'
-    return eclim#client#python#nailgun#Execute(a:port, a:command)
+  if len(instances) == 1
+    return instances[keys(instances)[0]]
   endif
 
-  let eclim = eclim#client#nailgun#GetEclimCommand()
-  if string(eclim) == '0'
-    return [1, g:EclimErrorReason]
-  endif
-
-  let command = a:command
-  " on windows/cygwin where cmd.exe is used, we need to escape any '^'
-  " characters in the command args.
-  if has('win32') || has('win64') || has('win32unix')
-    let command = substitute(command, '\^', '^^', 'g')
-  endif
-
-  let eclim .= ' --nailgun-port ' . a:port . ' ' . command
-
-  " for windows/cygwin, need to add a trailing quote to complete the command.
-  if has('win32') || has('win64') || has('win32unix')
-    " for some reason, in cywin, if two double quotes are next to each other,
-    " then the preceding arg isn't quoted correctly, so add a space to prevent
-    " this.
-    let eclim = eclim . ' "'
-  endif
-
-  let result = eclim#util#System(eclim)
-  return [v:shell_error, result]
-endfunction " }}}
-
-" GetEclimCommand() {{{
-" Gets the command to exexute eclim.
-function! eclim#client#nailgun#GetEclimCommand()
-  if !exists('g:EclimPath')
-    let g:EclimPath = g:EclimEclipseHome . '/eclim'
-
-    if has('win32') || has('win64') || has('win32unix')
-      let g:EclimPath = g:EclimPath . (has('win95') ? '.bat' : '.cmd')
-    endif
-
-    if !filereadable(g:EclimPath)
-      let g:EclimErrorReason = 'Could not locate file: ' . g:EclimPath
-      unlet g:EclimPath
-      return
-    endif
-
-    " jump through the windows hoops
-    if has('win32') || has('win64') || has('win32unix')
-      if has("win32unix")
-        let g:EclimPath = eclim#cygwin#WindowsPath(g:EclimPath, 1)
-      endif
-
-      " on windows, the command must be executed on the drive where eclipse is
-      " installed.
-      let drive = substitute(g:EclimPath, '^\([a-zA-Z]:\).*', '\1', '')
-      let g:EclimPath = '" ' . drive . ' && "' . g:EclimPath . '"'
-
-      " in cygwin, we must use 'cmd /c' to prevent issues with eclim script +
-      " some arg containing spaces causing a failure to invoke the script.
-      if has('win32unix')
-        let g:EclimPath = 'cmd /c ' . g:EclimPath
-      endif
-
-    else
-      let g:EclimPath = '"' . g:EclimPath . '"'
-    endif
-  endif
-  return g:EclimPath
-endfunction " }}}
-
-" GetNgCommand() {{{
-" Gets path to the ng executable.
-function! eclim#client#nailgun#GetNgCommand()
-  if !exists('g:EclimNgPath')
-    let g:EclimNgPath = substitute(g:EclimHome, '\', '/', 'g') .  '/bin/ng'
-
-    " on windows, ng.exe is at the eclipse root
-    if has('win32') || has('win64') || has('win32unix')
-      let g:EclimNgPath = g:EclimEclipseHome . '/ng.exe'
-      if !has('win32unix')
-        let g:EclimNgPath = substitute(g:EclimNgPath, '/', '\', 'g')
-      endif
-    endif
-
-    if !filereadable(g:EclimNgPath)
-      let g:EclimErrorReason = 'Could not locate file: ' . g:EclimNgPath
-      return
-    endif
-
-    " on windows, the command must be executed on the drive where eclipse is
-    " installed.
-    "if has("win32") || has("win64")
-    "  let g:EclimNgPath =
-    "    \ '"' . substitute(g:EclimNgPath, '^\([a-zA-Z]:\).*', '\1', '') .
-    "    \ ' && "' . g:EclimNgPath . '"'
-    "else
-      let g:EclimNgPath = '"' . g:EclimNgPath . '"'
-    "endif
-  endif
-  return g:EclimNgPath
-endfunction " }}}
-
-" GetNgPort([workspace]) {{{
-" Gets port that the nailgun server is configured to run on.
-function! eclim#client#nailgun#GetNgPort(...)
-  let port = 9091
-  let eclimrc = eclim#UserHome() . '/.eclimrc'
-  if filereadable(eclimrc)
-    let lines = filter(
-      \ readfile(eclimrc),
-      \ 'v:val =~ "^\\s*nailgun\.server\.port\\s*="')
-    if len(lines) > 0
-      exec 'let port = ' .
-        \ substitute(lines[0], '^\s*.\{-}=\s*\(\d\+\).*', '\1', '')
-    endif
-  endif
-  let default = port
-
-  let instances = eclim#UserHome() . '/.eclim/.eclimd_instances'
-  if filereadable(instances)
-    let workspaces = {}
-    let entries = readfile(instances)
-    for entry in entries
-      let workspace = substitute(entry, '\(.*\):.*', '\1', '')
-      let workspace = substitute(workspace, '\', '/', 'g')
-      let workspace .= workspace !~ '/$' ? '/' : ''
-      exec 'let port = ' . substitute(entry, '.*:\(\d\+\).*', '\1', '')
-      let workspaces[workspace] = port
-    endfor
-
-    " a specific workspace was supplied
-    if len(a:000) > 0
-      let workspace = a:000[0]
-      let workspace = substitute(workspace, '\', '/', 'g')
-      let workspace .= workspace !~ '/$' ? '/' : ''
-      return get(workspaces, workspace, default)
-    endif
-
-    let path = expand('%:p')
+  if len(instances) > 1
+    let path = a:0 && a:1 != '' ? a:1 : expand('%:p')
     if path == ''
       let path = getcwd() . '/'
     endif
@@ -187,24 +62,110 @@ function! eclim#client#nailgun#GetNgPort(...)
     endif
 
     " project inside of a workspace dir
-    for workspace in keys(workspaces)
+    for workspace in keys(instances)
       if path =~ '^' . workspace
-        return workspaces[workspace]
+        return instances[workspace]
       endif
     endfor
 
     " project outside of a workspace dir
     let project = eclim#project#util#GetProject(path)
     if len(project) > 0
-      return get(workspaces, project.workspace, default)
+      return get(instances, project.workspace, 0)
+    endif
+
+    let workspaces = keys(instances)
+    let response = eclim#util#PromptList(
+      \ 'Muliple workspaces found, please choose the target workspace',
+      \ workspaces, g:EclimInfoHighlight)
+
+    " user cancelled, error, etc.
+    if response < 0
+      return
+    endif
+
+    return instances[workspaces[response]]
+  endif
+
+  call eclim#util#Echo('No eclimd instances found running.')
+endfunction " }}}
+
+function! eclim#client#nailgun#GetEclimdInstances() " {{{
+  let instances = {}
+  let dotinstances = eclim#UserHome() . '/.eclim/.eclimd_instances'
+  if filereadable(dotinstances)
+    let lines = readfile(dotinstances)
+    for line in lines
+      if line !~ '^{'
+        continue
+      endif
+      let values = eval(line)
+      let instances[values.workspace] = values
+    endfor
+    return instances
+  endif
+endfunction " }}}
+
+function! eclim#client#nailgun#Execute(instance, command, ...) " {{{
+  let exec = a:0 ? a:1 : 0
+
+  if !exec
+    if !exists('g:EclimNailgunClient')
+      call s:DetermineClient()
+    endif
+
+    if g:EclimNailgunClient == 'python' && has('python')
+      return eclim#client#python#nailgun#Execute(a:instance.port, a:command)
     endif
   endif
 
-  return port
+  let eclim = eclim#client#nailgun#GetEclimCommand(a:instance.home)
+  if string(eclim) == '0'
+    return [1, g:EclimErrorReason]
+  endif
+
+  let command = a:command
+  if exec
+    let command = escape(command, '%#')
+  endif
+
+  " on windows/cygwin where cmd.exe is used, we need to escape any '^'
+  " characters in the command args.
+  if has('win32') || has('win64') || has('win32unix')
+    let command = substitute(command, '\^', '^^', 'g')
+  endif
+
+  let eclim .= ' --nailgun-port ' . a:instance.port . ' ' . command
+  if exec
+    let eclim = '!' . eclim
+  endif
+
+  let result = eclim#util#System(eclim, exec, exec)
+  return [v:shell_error, result]
 endfunction " }}}
 
-" s:DetermineClient() {{{
-function! s:DetermineClient()
+function! eclim#client#nailgun#GetEclimCommand(home) " {{{
+  " Gets the command to exexute eclim.
+  let command = a:home . 'bin/eclim'
+
+  if has('win32') || has('win64') || has('win32unix')
+    let command = command . (has('win95') ? '.bat' : '.cmd')
+  endif
+
+  if !filereadable(command)
+    let g:EclimErrorReason = 'Could not locate file: ' . command
+    return
+  endif
+
+  if has('win32unix')
+    " in cygwin, we must use 'cmd /c' to prevent issues with eclim script +
+    " some arg containing spaces causing a failure to invoke the script.
+    return 'cmd /c "' . eclim#cygwin#WindowsPath(command, 1) . '"'
+  endif
+  return '"' . command . '"'
+endfunction " }}}
+
+function! s:DetermineClient() " {{{
   " at least one ubuntu user had serious performance issues using the python
   " client, so we are only going to default to python on windows machines
   " where there is an actual potential benefit to using it.
@@ -213,6 +174,22 @@ function! s:DetermineClient()
   else
     let g:EclimNailgunClient = 'external'
   endif
+endfunction " }}}
+
+function! eclim#client#nailgun#CommandCompleteWorkspaces(argLead, cmdLine, cursorPos) " {{{
+  " Custom command completion for available workspaces.
+
+  let cmdLine = strpart(a:cmdLine, 0, a:cursorPos)
+  let args = eclim#util#ParseCmdLine(cmdLine)
+  let argLead = cmdLine =~ '\s$' ? '' : args[len(args) - 1]
+
+  let instances = eclim#client#nailgun#GetEclimdInstances()
+  let workspaces = sort(keys(instances))
+  if cmdLine !~ '[^\\]\s$'
+    call filter(workspaces, 'v:val =~ "^' . argLead . '"')
+  endif
+
+  return workspaces
 endfunction " }}}
 
 " vim:ft=vim:fdm=marker

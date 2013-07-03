@@ -18,7 +18,7 @@ source file will be marked via Vim's :sign functionality with '>>'
 markers in the left margin.
 
 Automatic validation of java source files can be disabled via the
-g:EclimJavaSrcValidate variable (described below).  If you choose to
+g:EclimJavaValidate variable (described below).  If you choose to
 disable automatic validation, you can still use the :Validate command
 to manually validate the current file.
 
@@ -30,8 +30,8 @@ Vim Settings (|vim-settings|)
 
 *g:EclimJavaSrcValidate*
 
-- g:EclimJavaSrcValidate (Default: 1) - If set to 0, disables source
-  code validation.
+- g:EclimJavaValidate (Default: 1) - If set to 0, disables source code
+  validation.
 
 - g:EclimValidateSortResults (Default: 'occurrence') - If set to
   'severity', the validation results will be sorted by severity
@@ -44,11 +44,6 @@ Eclim settings
 - org.eclipse.jdt.core.compiler.source - Determines the target java vm
   version (1.2, 1.3, 1.4, 1.5).
 
-*org.eclim.java.validation.ignore.warnings*
-
-- org.eclim.java.validation.ignore.warnings - Determines if warnings
-  are suppressed.
-
 *:JavaCorrect*
 
 
@@ -57,7 +52,7 @@ Code Correction
 
 Code correction in eclim is equivalent to the quick fix functionality
 of Eclipse. When you save a java source file, eclim validates the file
-and notes which lines contain errors.  To have eclim suggest possible
+and notes which lines contain errors. To have eclim suggest possible
 corrections for an error, you simply place the cursor on the error
 line and issue :JavaCorrect.
 
@@ -90,6 +85,11 @@ To apply the above change you would hit <enter> on the line:
 <
 
 
+Note: Java code corrections are handled just like a refactoring
+  (|vim-java-refactor|) so the RefactorUndo (|:RefactorUndo|) and
+  RefactorRedo (|:RefactorRedo|) commands can be used to undo/redo
+  corrections that can't be handled by vim's undo (like file moves).
+
 *:Checkstyle*
 
 
@@ -100,17 +100,9 @@ When editing a java source file, eclim provides the command
 :Checkstyle which will invoke checkstyle
 (http://checkstyle.sourceforge.net/) on the current file.
 
-Additionally, you can configure vim to execute checkstyle
-automatically when you save a java source file.  Simply set the vim
-variable g:EclimJavaCheckstyleOnSave to 1 in your vimrc or java
-ftplugin.
-
->
-
-   let g:EclimJavaCheckstyleOnSave = 1
-
-<
-
+Additionally, you can configure eclim to execute checkstyle
+automatically when you save a java source file by setting the eclim
+project settings org.eclim.java.checkstyle.onvalidate to true.
 
 Please note that both methods of invoking checkstyle require that you
 first configure the location of your checkstyle config file using the
@@ -120,14 +112,6 @@ configuration section below.
 
 Configuration
 -------------
-
-Vim Settings (|vim-settings|)
-
-*g:EclimJavaCheckstyleOnSave*
-
-- g:EclimJavaCheckstyleOnSave (Default: 0) - When non-zero, enables
-  running of checkstyle automatially upon saving of a java source
-  file.
 
 Eclim Settings (|vim-settings|)
 
@@ -140,5 +124,11 @@ Eclim Settings (|vim-settings|)
 
 - org.eclim.java.checkstyle.properties - Defines the location (project
   relative or absolute) or your checkstyle properties file.
+
+*org.eclim.java.checkstyle.onvalidate*
+
+- org.eclim.java.checkstyle.onvalidate - When set to true, checkstyle
+  will be run on the file along with the regular java validation upon
+  writing the file.
 
 vim:ft=eclimhelp
