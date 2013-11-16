@@ -16,3 +16,6 @@
 	path = bundle/perl-support.vim
 	url = git://github.com/vim-scripts/perl-support.vim.git
     ignore = dirty
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
