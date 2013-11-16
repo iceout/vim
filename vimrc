@@ -17,14 +17,14 @@
 "    -> Minibuffer plugin
 "    -> Omni complete functions
 "    -> Folding
-"    -> snipMate 
+"    -> snipMate
 "    -> WinManager
 "    -> vim cycle
-"    -> cscope setting 
+"    -> cscope setting
 "    -> latex
-"    -> DoxygenToolkit 
-"    -> some map 
-
+"    -> DoxygenToolkit
+"    -> some map
+"    -> tmux fixes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -49,7 +49,19 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
+augroup checktime
+    au!
+    if !has("gui_running")
+        "silent! necessary otherwise throws errors when using command
+        "line window.
+        autocmd BufEnter        * silent! checktime
+        autocmd CursorHold      * silent! checktime
+        autocmd CursorHoldI     * silent! checktime
+        "these two _may_ slow things down. Remove if they do.
+        "autocmd CursorMoved     * silent! checktime
+        "autocmd CursorMovedI    * silent! checktime
+    endif
+augroup END
 " 自动命令
 " 读文件时自动设定当前目录为刚读入文件所在的目录
 autocmd BufReadPost * cd %:p:h
@@ -86,9 +98,9 @@ set so=7
 
 set wildmenu "Turn on WiLd menu
 
-set ruler "Always show current position
-
 set nu
+
+set ruler "Always show current position
 
 set cmdheight=2 "The commandbar height
 "set hid "Change buffer - without saving
@@ -144,12 +156,17 @@ if has("gui_running")
   set background=dark
   "colorscheme peaksea
   "colorscheme freya
-  colorscheme mydesert
+  "colorscheme mydesert
+  colorscheme solarized
   "colorscheme desert
 else
-  colorscheme zellner
+  "let g:solarized_termcolors=256
+  let g:solarized_termtrans=1
+  "colorscheme desert
+  colorscheme solarized
+  "colorscheme zellner
   set background=dark
-  set nonu
+  "set nonu
 endif
 
 "set encoding=utf8
@@ -356,10 +373,11 @@ endfunction
 "}}}
 
 """"""""""""""""""""""""""""""
-" => bufExplorer plugin
+" => minibufExplorer plugin
 """"""""""""""""""""""""""""""
 " bufExplorer plugin {{{1
 let g:bufExplorerDefaultHelp=0
+let g:miniBufExplorerMoreThanOne=0
 let g:bufExplorerShowRelativePath=1
 map <leader>o :BufExplorer<cr>
 "}}}
@@ -389,7 +407,7 @@ set ofu=syntaxcomplete#Complete
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Folding 
+" => Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding {{{1
 "折叠相关的快捷键
@@ -409,17 +427,17 @@ set foldenable
 " syntax  用语法高亮来定义折叠
 " diff    对没有更改的文本进行折叠
 " marker  对文中的标志折叠
-set foldmethod=marker
+set foldmethod=syntax
 " 设置折叠层数为
-"set foldlevel=0
+set foldlevel=0
 " 设置折叠区域的宽度
-set foldcolumn=0
+"set foldcolumn=0
 " 新建的文件，刚打开的文件不折叠
 "autocmd! BufNewFile,BufRead * setlocal nofoldenable
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => snipMate 
+" => snipMate
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " snipMate {{{1
 let g:snips_author='iceout'
@@ -430,7 +448,8 @@ let g:snips_email='ice.404.out@gmail.com'
 " => WinManager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:winManagerWindowLayout='FileExplorer|TagList'
-let g:winManagerWindowLayout='NERDTree|TagList,BufExplorer'
+"let g:winManagerWindowLayout='NERDTree|TagList,BufExplorer'
+let g:winManagerWindowLayout='NERDTree'
 nmap wm :WMToggle<cr>:q<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -477,7 +496,7 @@ endif
 au VimEnter * RainbowParenthesesToggle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope setting 
+" cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope {{{1
 if has("cscope") && executable("cscope")
@@ -561,7 +580,7 @@ let g:tex_flavor='latex'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => DoxygenToolkit 
+" => DoxygenToolkit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 let g:DoxygenToolkit_paramTag_pre="@Param "
@@ -570,16 +589,27 @@ let g:DoxygenToolkit_authorName="iceout"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => some map 
+" => some map
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <F4> :cw<cr>
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <silent> <leader>ec :echo Google_Translate('en','zh-CN',expand('<cword>'))<CR>
+set list listchars=tab:\|_,trail:·
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => python 
+" => python
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufWritePost *.py call Flake8()
 let g:pyflakes_use_quickfix = 0
 autocmd FileType python map <buffer> <leader>8 :call Flake8()<CR>
 
+""""""""""""""
+" tmux fixes "
+""""""""""""""
+" Handle tmux $TERM quirks in vim
+if $TERM =~ '^screen-256color'
+    map <Esc>OH <Home>
+    map! <Esc>OH <Home>
+    map <Esc>OF <End>
+    map! <Esc>OF <End>
+endif

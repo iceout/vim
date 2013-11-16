@@ -22,6 +22,10 @@ snippet br
 snippet de
 	default:
 		${1}
+snippet tr:
+	try {
+		${1}
+	}
 snippet ca
 	catch(${1:Exception} ${2:e}) ${3}
 snippet th
@@ -41,7 +45,9 @@ snippet j.n
 snippet j.m
 	java.math.
 snippet if
-	if (${1}) ${2}
+	if (${1}) {
+	    ${2}
+	}
 snippet el
 	else 
 snippet elif
@@ -49,9 +55,13 @@ snippet elif
 snippet wh
 	while (${1}) ${2}
 snippet for
-	for (${1}; ${2}; ${3}) ${4}
+	for (${1}; ${2}; ${3}) {
+	    ${4}
+	}
 snippet fore
-	for (${1} : ${2}) ${3}
+	for (${1} : ${2}) {
+	    ${3}
+	}
 snippet sw
 	switch (${1}) ${2}
 snippet cs
@@ -59,11 +69,35 @@ snippet cs
 		${2}
 	${3}
 snippet tc
-	public class ${1:`Filename()`} extends ${2:TestCase}
+	/**
+	 * ${1:classDescription}
+	 *
+	 * @version 1.0
+	 * @author ${2:name}
+	 */
+	public class ${3:`Filename()`} extends ${2:TestCase}
 snippet t
 	public void test${1:Name}() throws Exception ${2}
+snippet f
+	/**
+	 * ${1:doSomething}
+	 * @param ${2:args}
+	 * @return ${3:return}
+	 */
+	public ${4:void} ${5:function}() {
+	    ${6}
+	}
 snippet cl
-	class ${1:`Filename("", "untitled")`} ${2}
+	/**
+	 * ${1:classDescription}
+	 *
+	 * @version 1.0
+	 * @author ${2:name}
+	 */
+	public class ${3:`Filename()`} {
+	    ${4}
+	}
+#class ${1:`Filename("", "untitled")`} ${2}
 snippet in
 	interface ${1:`Filename("", "untitled")`} ${2:extends Parent}${3}
 snippet m
@@ -76,3 +110,5 @@ snippet cos
 	static public final String ${1:var} = "${2}";${3}
 snippet as
 	assert ${1:test} : "${2:Failure message}";${3}
+snippet syso
+	System.out.println(${1});

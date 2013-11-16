@@ -1,6 +1,6 @@
 snippet #!
 	#!/usr/bin/python
-	# -*- coding: ${1:utf-8} -*-
+	# -*- coding: ${1:utf-8} -*-${2}
 snippet imp
 	import ${1:module}
 # Module Docstring
@@ -85,8 +85,8 @@ snippet ifmain
 snippet _
 	__${1:init}__${2}
 snippet filepy
-	#Filename: ${1:`Filename('$1.py', 'foo.py')`}
-	#Author:	${2:`g:snips_author`}
-	#Email:	${3:`g:snips_email`}
-	#Date: ${4:`strftime("%Y-%m-%d")`}
-	#Description:	 ${5}
+	#Filename:   ${1:`Filename('$1.py', 'foo.py')`}
+	#Author:     ${2:`g:snips_author`}
+	#Email:      ${3:`g:snips_email`}
+	#Date:       ${4:`strftime("%Y-%m-%d")`}
+	#Description:${5}
