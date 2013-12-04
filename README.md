@@ -5,12 +5,13 @@
 ----
 个人vimrc存档
 
-usage:
+__usage__:
 
 `git clone https://github.com/iceout/vim.git`
+
 `mv ~/vim/.vimrc ~/`
 
-Note: You shold install ctags and something else by youselft to get full feature.
+Note: You shold install ctags and something else by youself to get full feature.
 
 
 cycle
