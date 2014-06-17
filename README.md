@@ -11,6 +11,8 @@ __usage__:
 
 `cp ~/vim/.vimrc ~/`
 
+`git submodule init`
+
 `git submodule update`
 
 `sudo apt-get install exuberant-ctags`
