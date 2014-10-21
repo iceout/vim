@@ -70,7 +70,7 @@ pathogen
 
     cd ~/.vim/bundle
     git clone git://github.com/tpope/vim-fugitive.git
-    :Helptags
+    :Helptags (in Vim)
 
 安装插件
 
