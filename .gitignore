@@ -40,3 +40,6 @@ __pycache__
 pip-log.txt
 
 .netrwhist
+
+doc/tags
+doc/tags-cn
