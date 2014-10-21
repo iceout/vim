@@ -1,0 +1,12 @@
+snippet #!#
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*-
+snippet rcsv
+	with open(${1:PATH}) as file_:
+	    csvrd = csv.reader(file_)
+	    for line in csvrd:
+	        ${2:ToDo}
+snippet wcsv
+	with open(${1:PATH}, 'wb') as file_:
+	    csvwt = csv.write(file_, quoting=csv.QUOTE_ALL, lineterminator='\n')
+	    ${2:ToDo}
