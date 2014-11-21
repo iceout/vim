@@ -5,5 +5,5 @@ snippet rcsv
 	        ${2:ToDo}
 snippet wcsv
 	with open(${1:PATH}, 'wb') as file_:
-	    csvwt = csv.write(file_, quoting=csv.QUOTE_ALL, lineterminator='\n')
+	    csvwt = csv.writer(file_, quoting=csv.QUOTE_ALL, lineterminator='\n')
 	    ${2:ToDo}
