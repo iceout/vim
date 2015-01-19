@@ -5,12 +5,19 @@
 ----
 个人vimrc存档
 
-usage:
+__usage__:
 
 `git clone https://github.com/iceout/vim.git`
-`mv ~/vim/.vimrc ~/`
 
-Note: You shold install ctags and something else by youselft to get full feature.
+`cp ~/vim/.vimrc ~/`
+
+`git submodule init`
+
+`git submodule update`
+
+`sudo apt-get install exuberant-ctags`
+
+`sudo pip install flake8 jedi`
 
 
 cycle
@@ -63,21 +70,24 @@ pathogen
 
     cd ~/.vim/bundle
     git clone git://github.com/tpope/vim-fugitive.git
-    :Helptags
+    :Helptags (in Vim)
 
 安装插件
 
 `#git submodule add 插件 Git 仓库地址 bundle/插件名字`
+
 `git submodule add git://github.com/tpope/vim-markdown.git bundle/vim-markdown`
 
 升级插件
 
 `cd ~/.vim/bundle/vim-markdown # 将 vim-markdown 替换为需要升级的插件名字`
+
 `git pull origin master`
 
 升级所有插件
 
 `cd ~/.vim`
+
 `git submodule foreach git pull origin master`
 
 删除插件

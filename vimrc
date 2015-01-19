@@ -25,6 +25,7 @@
 "    -> DoxygenToolkit
 "    -> some map
 "    -> tmux fixes
+"    -> jedi-vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -80,7 +81,7 @@ map <leader>e :e! ~/vim/vimrc<cr>
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim/vimrc
 "au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%80v./
-au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%80v/
+au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
 "This is for setting Makefiles with tabs not spaces
 autocmd FileType make setlocal noexpandtab
 
@@ -427,9 +428,9 @@ set foldenable
 " syntax  用语法高亮来定义折叠
 " diff    对没有更改的文本进行折叠
 " marker  对文中的标志折叠
-set foldmethod=syntax
+set foldmethod=indent
 " 设置折叠层数为
-set foldlevel=0
+set foldlevel=99
 " 设置折叠区域的宽度
 "set foldcolumn=0
 " 新建的文件，刚打开的文件不折叠
@@ -594,7 +595,7 @@ let g:DoxygenToolkit_authorName="iceout"
 nmap <F4> :cw<cr>
 "map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 nmap <silent> <leader>ec :echo Google_Translate('en','zh-CN',expand('<cword>'))<CR>
-set list listchars=tab:\|_,trail:·
+set list listchars=tab:>-,trail:·
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => python
@@ -613,3 +614,16 @@ if $TERM =~ '^screen-256color'
     map <Esc>OF <End>
     map! <Esc>OF <End>
 endif
+
+""""""""""""""
+" jedi-vim"
+""""""""""""""
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "1"
