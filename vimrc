@@ -627,3 +627,28 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "1"
+
+
+" Format code style
+func! FormatSrc()
+    exec "w"
+    if &filetype == 'c'
+        exec "!astyle --style=ansi --one-line=keep-statements -a --suffix=none %"
+    elseif &filetype == 'cpp' || &filetype == 'hpp'
+        exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
+    elseif &filetype == 'perl'
+        exec "!astyle --style=gnu --suffix=none %"
+    elseif &filetype == 'py'||&filetype == 'python'
+        exec "r !autopep8 -i --aggressive --ignore=W690,E501 %"
+    elseif &filetype == 'java'
+        exec "!astyle --style=java --suffix=none %"
+    elseif &filetype == 'jsp'
+        exec "!astyle --style=gnu --suffix=none %"
+    elseif &filetype == 'xml'
+        exec "!astyle --style=gnu --suffix=none %"
+    endif
+    exec "e! %"
+endfunc
+
+" autopep8
+noremap <silent><Leader>f :call FormatSrc()<CR>
