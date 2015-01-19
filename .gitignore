@@ -40,3 +40,5 @@ __pycache__
 pip-log.txt
 
 .netrwhist
+tmux-client-23256.log
+tmux-server-23258.log
