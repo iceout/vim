@@ -603,6 +603,7 @@ set list listchars=tab:>-,trail:·
 autocmd BufWritePost *.py call Flake8()
 let g:pyflakes_use_quickfix = 0
 autocmd FileType python map <buffer> <leader>8 :call Flake8()<CR>
+let g:flake8_ignore="E501"
 
 """"""""""""""
 " tmux fixes "
