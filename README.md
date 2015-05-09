@@ -97,3 +97,8 @@ pathogen
 4. 删除插件
 
 `git rm bundle/vim-markdown # 将 vim-markdown 替换为需要升级的插件名字`
+
+
+vimtorrent
+-
+依赖[BitTorrent-bencode](https://pypi.python.org/pypi/BitTorrent-bencode)

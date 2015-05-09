@@ -34,3 +34,6 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/vimtorrent"]
+	path = bundle/vimtorrent
+	url = https://github.com/iceout/vimtorrent.git
