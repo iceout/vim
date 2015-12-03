@@ -41,7 +41,7 @@ set viminfo='100,<50,s10,h
 " Sets how many lines of history VIM has to remember
 set history=700
 
-" pythogen.vim
+" pathogen.vim
 call pathogen#infect()
 
 " Enable filetype plugin
