@@ -37,3 +37,6 @@
 [submodule "bundle/vimtorrent"]
 	path = bundle/vimtorrent
 	url = https://github.com/iceout/vimtorrent.git
+[submodule "bundle/vim-autocomplpop"]
+	path = bundle/vim-autocomplpop
+	url = https://github.com/vim-scripts/AutoComplPop.git

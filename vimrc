@@ -653,3 +653,8 @@ endfunc
 
 " autopep8
 noremap <silent><Leader>f :call FormatSrc()<CR>
+
+
+" acp
+" 禁用python的补全
+let g:acp_behaviorPythonOmniLength = -1
