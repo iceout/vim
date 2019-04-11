@@ -12,10 +12,6 @@
     path = bundle/Vim-R-plugin
     url = git://github.com/vim-scripts/Vim-R-plugin.git
     ignore = dirty
-[submodule "bundle/perl-support.vim"]
-    path = bundle/perl-support.vim
-    url = git://github.com/vim-scripts/perl-support.vim.git
-    ignore = dirty
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
@@ -34,9 +30,3 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
-[submodule "bundle/vimtorrent"]
-	path = bundle/vimtorrent
-	url = https://github.com/iceout/vimtorrent.git
-[submodule "bundle/vim-autocomplpop"]
-	path = bundle/vim-autocomplpop
-	url = https://github.com/vim-scripts/AutoComplPop.git

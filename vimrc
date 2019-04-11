@@ -179,9 +179,9 @@ endif
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,gb18030,big5,euc-jp,euc-kr,ucs-2le,latin1
 "set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,ucs-2le,latin1
-"set termencoding=cp936
+set termencoding=utf-8
 set fileencoding=utf-8
-"set ffs=unix,dos,mac "Default file types
+"set ffs=dos,unix,mac "Default file types
 "}}}
 
 
@@ -191,7 +191,7 @@ set fileencoding=utf-8
 "  Files, backups and undo {{{1
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
-set nowritebackup 
+set nowritebackup
 set noswapfile
 
 "Persistent undo
