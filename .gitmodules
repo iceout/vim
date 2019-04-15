@@ -32,4 +32,4 @@
 	url = https://github.com/honza/vim-snippets.git
 [submodule "bundle/vim-autocomplpop"]
 	path = bundle/vim-autocomplpop
-	url = git@github.com:othree/vim-autocomplpop.git
+	url = https://github.com/othree/vim-autocomplpop.git
