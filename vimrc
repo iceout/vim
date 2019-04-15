@@ -81,7 +81,7 @@ map <leader>e :e! ~/vim/vimrc<cr>
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/vim/vimrc
 "au BufRead,BufNewFile *.c,*.cpp,*.py match Error /\%80v.\%80v./
-au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
+"au BufRead,BufNewFile *.c,*.cpp,*.py 2match Underlined /.\%81v/
 "This is for setting Makefiles with tabs not spaces
 autocmd FileType make setlocal noexpandtab
 
@@ -600,10 +600,8 @@ set list listchars=tab:>-,trail:·
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => python
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufWritePost *.py call Flake8()
-let g:pyflakes_use_quickfix = 0
-autocmd FileType python map <buffer> <leader>8 :call Flake8()<CR>
-let g:flake8_ignore="E501"
+autocmd BufWritePost *.py call flake8#Flake8()
+
 
 """"""""""""""
 " tmux fixes "
