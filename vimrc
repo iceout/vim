@@ -656,3 +656,6 @@ noremap <silent><Leader>f :call FormatSrc()<CR>
 " acp
 " 禁用python的补全
 let g:acp_behaviorPythonOmniLength = -1
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
