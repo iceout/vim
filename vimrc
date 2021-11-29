@@ -659,3 +659,6 @@ let g:acp_behaviorPythonOmniLength = -1
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
