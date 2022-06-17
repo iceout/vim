@@ -1,17 +1,17 @@
 [submodule "bundle/vim-flake8"]
     path = bundle/vim-flake8
-    url = git://github.com/nvie/vim-flake8.git
+    url = https://github.com/nvie/vim-flake8.git
 [submodule "bundle/c.vim"]
     path = bundle/c.vim
-    url = git://github.com/vim-scripts/c.vim.git
+    url = https://github.com/vim-scripts/c.vim.git
     ignore = dirty
 [submodule "bundle/Vim-R-plugin"]
     path = bundle/Vim-R-plugin
-    url = git://github.com/vim-scripts/Vim-R-plugin.git
+    url = https://github.com/vim-scripts/Vim-R-plugin.git
     ignore = dirty
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git

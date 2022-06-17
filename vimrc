@@ -443,6 +443,7 @@ set foldlevel=99
 " snipMate {{{1
 let g:snips_author='iceout'
 let g:snips_email='ice.404.out@gmail.com'
+let g:snipMate = { 'snippet_version' : 1 }
 "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -663,3 +664,16 @@ cmap w!! w !sudo tee > /dev/null %
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='deus'
+
+
+" auto set paste & nopaste
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
